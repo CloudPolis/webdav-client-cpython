@@ -1,0 +1,5 @@
+*.dat
+.idea/
+*.swp
+*build*/
+*install*/
