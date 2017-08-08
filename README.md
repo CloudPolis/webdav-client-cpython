@@ -2,10 +2,18 @@ PyWDC
 ===
 
 ```ShellSession
-$ export PYTHON_INCLUDE_DIR=$(python -c "from distutils.sysconfig import get_python_inc; print(get_python_inc())")
-$ export PYTHON_LIB_DIR=$(python -c "import distutils.sysconfig as sysconfig; print(sysconfig.get_config_var('LIBDIR'))")
-$ export PYTHON_LIBRARY=${PYTHON_LIB_DIR}/libpython2.7.dylib # need to change on your version
-$ cmake -H. -B_builds -DCMAKE_INSTALL_PREFIX=_install -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIR} -DPYTHON_LIBRARY=${PYTHON_LIBRARY}
+$ export PYTHON_INCLUDE_DIR=$(python -c "
+from distutils.sysconfig import get_python_inc; 
+print(get_python_inc())
+")
+$ export PYTHON_LIB_DIR=$(python -c "
+import distutils.sysconfig as sysconfig; 
+print(sysconfig.get_config_var('LIBDIR'))
+")
+# need to change on your version
+$ export PYTHON_LIBRARY=${PYTHON_LIB_DIR}/libpython2.7.dylib
+$ cmake -H. -B_builds -DCMAKE_INSTALL_PREFIX=_install \
+-DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIR} -DPYTHON_LIBRARY=${PYTHON_LIBRARY}
 $ cmake --build _builds --target install
 $ cd _install/bin
 $ python 
