@@ -1,6 +1,8 @@
 PyWDC
 ===
 
+Building from sources:
+
 ```ShellSession
 $ export PYTHON_INCLUDE_DIR=$(python -c "
 from distutils.sysconfig import get_python_inc; 
@@ -15,8 +17,13 @@ $ export PYTHON_LIBRARY=${PYTHON_LIB_DIR}/libpython2.7.dylib
 $ cmake -H. -B_builds -DCMAKE_INSTALL_PREFIX=_install \
 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIR} -DPYTHON_LIBRARY=${PYTHON_LIBRARY}
 $ cmake --build _builds --target install
+```
+
+Example of use:
+```ShellSession
 $ cd _install/bin
 $ python 
+>>> import pywdc
 >>> options = dict()
 >>> options['webdav_hostname'] = "your_webdav_hostname"
 >>> options['webdav_username'] = "your_webdav_username"
